@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Dexter-inspired color palette */
+  --color-blood-50: #fef2f2;
+  --color-blood-100: #fee2e2;
+  --color-blood-200: #fecaca;
+  --color-blood-300: #fca5a5;
+  --color-blood-400: #f87171;
+  --color-blood-500: #dc2626;
+  --color-blood-600: #b91c1c;
+  --color-blood-700: #991b1b;
+  --color-blood-800: #7f1d1d;
+  --color-blood-900: #450a0a;
+  --color-blood-950: #2d0505;
+
+  --color-crime-50: #f9fafb;
+  --color-crime-100: #f3f4f6;
+  --color-crime-200: #e5e7eb;
+  --color-crime-300: #d1d5db;
+  --color-crime-400: #9ca3af;
+  --color-crime-500: #6b7280;
+  --color-crime-600: #4b5563;
+  --color-crime-700: #374151;
+  --color-crime-800: #1f2937;
+  --color-crime-900: #111827;
+  --color-crime-950: #030712;
+
+  --color-evidence-yellow: #fbbf24;
+  --color-evidence-tape: #fcd34d;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  --radius: 0.5rem;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --primary: #dc2626;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #171717;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #f3f4f6;
+  --accent-foreground: #171717;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --card: #111827;
+    --card-foreground: #ededed;
+    --primary: #dc2626;
+    --primary-foreground: #171717;
+    --secondary: #1f2937;
+    --secondary-foreground: #ededed;
+    --muted: #1f2937;
+    --muted-foreground: #9ca3af;
+    --accent: #1f2937;
+    --accent-foreground: #ededed;
+    --border: #374151;
+    --input: #374151;
+    --ring: #dc2626;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom Dexter-inspired styles */
+.blood-drip {
+  position: relative;
+}
+
+.blood-drip::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 2px;
+  height: 10px;
+  background: linear-gradient(to bottom, var(--color-blood-500), transparent);
+  transform: translateX(-50%);
+}
+
+.crime-scene-tape {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-evidence-tape),
+    var(--color-evidence-tape) 20px,
+    #000 20px,
+    #000 40px
+  );
+  padding: 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.evidence-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background: var(--color-evidence-yellow);
+  color: #000;
+  font-weight: bold;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-crime-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-blood-600);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blood-500);
+}
