@@ -1,153 +1,181 @@
 import Link from 'next/link';
-import { ArrowRight, Brain, Microscope, Code, Users } from 'lucide-react';
+import { Brain, Microscope, Code, Briefcase, ArrowRight } from 'lucide-react';
+import ArticleCard from '@/components/content/ArticleCard';
+import { getFeaturedArticles } from '@/lib/content/schema';
 
-export default function Home() {
+export default function HomePage() {
+  const featuredArticles = getFeaturedArticles();
+
   return (
-    <div className="bg-background">
+    <div className="flex flex-col">
       {/* Hero Section */}
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
-          <div className="text-center">
-            <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-7xl">
+      <section className="relative overflow-hidden bg-gradient-to-b from-crime-950 to-background py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl mb-6">
               You Don't Need to Be a{' '}
-              <span className="text-blood-600 dark:text-blood-500">Math Genius</span>
-              {' '}to Master Forensic Science
+              <span className="text-blood-500">Math Genius</span> to Master{' '}
+              <span className="text-blood-500">Forensic Science</span>
             </h1>
-            <p className="mt-8 text-lg leading-8 text-muted-foreground sm:text-xl">
-              Empower your forensic science education with AI-powered tools and resources. 
-              Built for students who are passionate about forensic science but struggle with math.
+            <p className="text-xl leading-8 text-muted-foreground mb-10">
+              AI-powered learning tools and career guidance for forensic science students who
+              struggle with math but love the science.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="flex items-center justify-center gap-4">
+              <Link
+                href="/about/welcome"
+                className="rounded-md bg-blood-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blood-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blood-600 transition-colors"
+              >
+                Get Started
+              </Link>
               <Link
                 href="/study-resources"
-                className="rounded-md bg-blood-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blood-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blood-600 transition-colors"
+                className="rounded-md border border-border bg-background px-6 py-3 text-base font-semibold text-foreground hover:bg-muted transition-colors"
               >
-                Explore AI Tools
-                <ArrowRight className="inline-block ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                href="/about"
-                className="text-base font-semibold leading-7 text-foreground hover:text-blood-600 dark:hover:text-blood-500 transition-colors"
-              >
-                Learn more <span aria-hidden="true">→</span>
+                Explore Resources
               </Link>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Value Propositions */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-blood-600 dark:text-blood-500">
-            Everything You Need
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            AI-Powered Learning for Forensic Science
-          </p>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Whether you're struggling with calculus, curious about blood spatter analysis, 
-            or exploring tech careers in forensics, we've got you covered.
-          </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-4">
-            <div className="flex flex-col">
-              <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-foreground">
-                <Brain className="h-5 w-5 flex-none text-blood-600 dark:text-blood-500" aria-hidden="true" />
-                AI-Assisted Learning
-              </dt>
-              <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
-                <p className="flex-auto">
-                  Learn how to use ChatGPT, Claude, and other AI tools to understand complex math concepts and ace your courses.
-                </p>
-                <p className="mt-6">
-                  <Link href="/study-resources" className="text-sm font-semibold leading-6 text-blood-600 dark:text-blood-500 hover:text-blood-500">
-                    Explore tools <span aria-hidden="true">→</span>
-                  </Link>
-                </p>
-              </dd>
-            </div>
-            <div className="flex flex-col">
-              <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-foreground">
-                <Microscope className="h-5 w-5 flex-none text-blood-600 dark:text-blood-500" aria-hidden="true" />
-                Real Forensic Science
-              </dt>
-              <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
-                <p className="flex-auto">
-                  Explore blood spatter analysis, crime scene investigation, and the science behind "Dexter" with interactive tools.
-                </p>
-                <p className="mt-6">
-                  <Link href="/forensic-science" className="text-sm font-semibold leading-6 text-blood-600 dark:text-blood-500 hover:text-blood-500">
-                    Dive in <span aria-hidden="true">→</span>
-                  </Link>
-                </p>
-              </dd>
-            </div>
-            <div className="flex flex-col">
-              <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-foreground">
-                <Code className="h-5 w-5 flex-none text-blood-600 dark:text-blood-500" aria-hidden="true" />
-                Tech Skills
-              </dt>
-              <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
-                <p className="flex-auto">
-                  Build technology skills that don't require advanced math. Learn no-code tools, data visualization, and more.
-                </p>
-                <p className="mt-6">
-                  <Link href="/tech-skills" className="text-sm font-semibold leading-6 text-blood-600 dark:text-blood-500 hover:text-blood-500">
-                    Start learning <span aria-hidden="true">→</span>
-                  </Link>
-                </p>
-              </dd>
-            </div>
-            <div className="flex flex-col">
-              <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-foreground">
-                <Users className="h-5 w-5 flex-none text-blood-600 dark:text-blood-500" aria-hidden="true" />
-                Career Pathways
-              </dt>
-              <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-muted-foreground">
-                <p className="flex-auto">
-                  Discover tech-enabled forensic careers that leverage your passion without requiring you to be a math expert.
-                </p>
-                <p className="mt-6">
-                  <Link href="/career-pathways" className="text-sm font-semibold leading-6 text-blood-600 dark:text-blood-500 hover:text-blood-500">
-                    Explore careers <span aria-hidden="true">→</span>
-                  </Link>
-                </p>
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="bg-blood-600 dark:bg-blood-700">
-        <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Built for Shayla and students like her
+      <section className="py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Everything You Need to Succeed
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-blood-100">
-              This platform was created to help forensic science students at George Mason University 
-              and beyond succeed with AI-powered learning tools and practical resources.
+            <p className="mt-4 text-lg text-muted-foreground">
+              From AI study tools to career guidance, we've got you covered
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {/* AI Learning */}
+            <div className="rounded-lg border border-border bg-card p-8 hover:shadow-lg transition-shadow">
+              <div className="mb-4 inline-flex rounded-lg bg-blue-100 dark:bg-blue-900 p-3">
+                <Brain className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">AI-Powered Learning</h3>
+              <p className="text-muted-foreground mb-4">
+                Master calculus and statistics with ChatGPT, Claude, and other AI tools designed
+                for your success.
+              </p>
               <Link
-                href="/about"
-                className="rounded-md bg-white px-6 py-3 text-base font-semibold text-blood-600 shadow-sm hover:bg-blood-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white transition-colors"
+                href="/study-resources/surviving-calculus-with-ai"
+                className="text-blue-600 dark:text-blue-400 font-medium hover:underline inline-flex items-center gap-1"
               >
-                Read our story
+                Learn How <ArrowRight className="h-4 w-4" />
               </Link>
+            </div>
+
+            {/* Forensic Science */}
+            <div className="rounded-lg border border-border bg-card p-8 hover:shadow-lg transition-shadow">
+              <div className="mb-4 inline-flex rounded-lg bg-blood-100 dark:bg-blood-900 p-3">
+                <Microscope className="h-6 w-6 text-blood-600 dark:text-blood-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Real Forensic Science</h3>
+              <p className="text-muted-foreground mb-4">
+                From Dexter fan to forensic scientist—learn what it really takes to work in the
+                field.
+              </p>
               <Link
-                href="/community"
-                className="text-base font-semibold leading-7 text-white hover:text-blood-100 transition-colors"
+                href="/career-pathways/dexter-fan-to-forensic-scientist"
+                className="text-blood-600 dark:text-blood-400 font-medium hover:underline inline-flex items-center gap-1"
               >
-                Join the community <span aria-hidden="true">→</span>
+                Explore Path <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Tech Skills */}
+            <div className="rounded-lg border border-border bg-card p-8 hover:shadow-lg transition-shadow">
+              <div className="mb-4 inline-flex rounded-lg bg-purple-100 dark:bg-purple-900 p-3">
+                <Code className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Technology Skills</h3>
+              <p className="text-muted-foreground mb-4">
+                Build valuable tech skills for forensic careers that don't require advanced
+                mathematics.
+              </p>
+              <Link
+                href="/career-pathways"
+                className="text-purple-600 dark:text-purple-400 font-medium hover:underline inline-flex items-center gap-1"
+              >
+                View Careers <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Career Pathways */}
+            <div className="rounded-lg border border-border bg-card p-8 hover:shadow-lg transition-shadow">
+              <div className="mb-4 inline-flex rounded-lg bg-green-100 dark:bg-green-900 p-3">
+                <Briefcase className="h-6 w-6 text-green-600 dark:text-green-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Career Guidance</h3>
+              <p className="text-muted-foreground mb-4">
+                Discover the math you actually need for different forensic science careers.
+              </p>
+              <Link
+                href="/career-pathways/math-you-actually-need"
+                className="text-green-600 dark:text-green-400 font-medium hover:underline inline-flex items-center gap-1"
+              >
+                Read Guide <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Featured Articles */}
+      <section className="py-24 sm:py-32 bg-muted/50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              Featured Articles
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Start with these essential guides to transform your forensic science journey
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {featuredArticles.slice(0, 3).map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/study-resources"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-6 py-3 text-base font-semibold text-foreground hover:bg-muted transition-colors"
+            >
+              View All Resources <ArrowRight className="h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-6">
+              Built for Shayla, and Students Like Her
+            </h2>
+            <p className="text-lg leading-8 text-muted-foreground mb-10">
+              This platform was created for forensic science majors at George Mason University and
+              beyond who are passionate about the science but struggle with mathematics. If that's
+              you, you're in the right place.
+            </p>
+            <Link
+              href="/about/welcome"
+              className="rounded-md bg-blood-600 px-8 py-4 text-lg font-semibold text-white shadow-sm hover:bg-blood-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blood-600 transition-colors inline-block"
+            >
+              Start Your Journey
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
