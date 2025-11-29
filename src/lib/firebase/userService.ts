@@ -18,6 +18,9 @@ export async function createUserProfile(user: {
   displayName: string | null;
   photoURL: string | null;
 }) {
+  if (!db) {
+    throw new Error('Firestore is not initialized');
+  }
   const userRef = doc(db, 'users', user.uid);
   const userSnap = await getDoc(userRef);
 
@@ -45,6 +48,9 @@ export async function createUserProfile(user: {
 }
 
 export async function getUserProfile(uid: string): Promise<UserProfile | null> {
+  if (!db) {
+    throw new Error('Firestore is not initialized');
+  }
   const userRef = doc(db, 'users', uid);
   const userSnap = await getDoc(userRef);
 
@@ -55,6 +61,9 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
 }
 
 export async function addBookmark(uid: string, articleSlug: string) {
+  if (!db) {
+    throw new Error('Firestore is not initialized');
+  }
   const userRef = doc(db, 'users', uid);
   await updateDoc(userRef, {
     bookmarks: arrayUnion(articleSlug),
@@ -62,6 +71,9 @@ export async function addBookmark(uid: string, articleSlug: string) {
 }
 
 export async function removeBookmark(uid: string, articleSlug: string) {
+  if (!db) {
+    throw new Error('Firestore is not initialized');
+  }
   const userRef = doc(db, 'users', uid);
   await updateDoc(userRef, {
     bookmarks: arrayRemove(articleSlug),
@@ -73,6 +85,9 @@ export async function updateReadingProgress(
   articleSlug: string,
   progress: number
 ) {
+  if (!db) {
+    throw new Error('Firestore is not initialized');
+  }
   const userRef = doc(db, 'users', uid);
   await updateDoc(userRef, {
     [`readingProgress.${articleSlug}`]: progress,

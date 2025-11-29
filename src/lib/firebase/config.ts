@@ -12,17 +12,24 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase only if it hasn't been initialized yet
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Check if we're in a browser environment and have valid Firebase config
+const isValidConfig = firebaseConfig.apiKey && firebaseConfig.projectId;
+const isBrowser = typeof window !== 'undefined';
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+// Initialize Firebase only if we have valid config and it hasn't been initialized yet
+const app = isValidConfig && getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0] || null;
 
-// Google Auth Provider
-export const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({
-  prompt: 'select_account',
-});
+// Export auth, db, and storage only if app is initialized
+export const auth = app ? getAuth(app) : null;
+export const db = app ? getFirestore(app) : null;
+export const storage = app ? getStorage(app) : null;
+
+// Google Auth Provider (only initialize if auth is available)
+export const googleProvider = auth ? new GoogleAuthProvider() : null;
+if (googleProvider) {
+  googleProvider.setCustomParameters({
+    prompt: 'select_account',
+  });
+}
 
 export default app;
