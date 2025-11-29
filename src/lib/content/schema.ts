@@ -95,3 +95,8 @@ export function getFeaturedArticles(): ArticleMetadata[] {
 export function getArticleBySlug(slug: string): ArticleMetadata | undefined {
   return ARTICLES[slug];
 }
+
+// Helper function to get all articles
+export function getAllArticles(): ArticleMetadata[] {
+  return Object.values(ARTICLES);
+}

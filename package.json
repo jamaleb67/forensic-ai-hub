@@ -24,6 +24,7 @@
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.65.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-highlight": "^7.0.2",

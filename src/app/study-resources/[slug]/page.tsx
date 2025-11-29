@@ -1,17 +1,22 @@
 import { notFound } from 'next/navigation';
 import { Clock, Calendar, User } from 'lucide-react';
-import { getArticleBySlug } from '@/lib/content/schema';
+import { getArticleBySlug, getAllArticles } from '@/lib/content/schema';
+import ArticleRecommendations from '@/components/content/ArticleRecommendations';
 
 // Import MDX files dynamically
 const articles = {
   'surviving-calculus-with-ai': () => import('@/content/study-resources/surviving-calculus-with-ai.mdx'),
   'mindgrasp-ai-review': () => import('@/content/study-resources/mindgrasp-ai-review.mdx'),
+  'ai-tools-comparison': () => import('@/content/study-resources/ai-tools-comparison.mdx'),
+  'gmu-forensic-science-guide': () => import('@/content/study-resources/gmu-forensic-science-guide.mdx'),
 };
 
 export async function generateStaticParams() {
   return [
     { slug: 'surviving-calculus-with-ai' },
     { slug: 'mindgrasp-ai-review' },
+    { slug: 'ai-tools-comparison' },
+    { slug: 'gmu-forensic-science-guide' },
   ];
 }
 
@@ -109,6 +114,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </div>
         </footer>
       )}
+
+      {/* Article Recommendations */}
+      <ArticleRecommendations
+        currentArticleSlug={params.slug}
+        allArticles={getAllArticles()}
+        maxResults={3}
+      />
     </article>
   );
 }

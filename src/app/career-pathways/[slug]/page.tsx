@@ -1,17 +1,24 @@
 import { notFound } from 'next/navigation';
 import { Clock, Calendar, User } from 'lucide-react';
-import { getArticleBySlug } from '@/lib/content/schema';
+import { getArticleBySlug, getAllArticles } from '@/lib/content/schema';
+import ArticleRecommendations from '@/components/content/ArticleRecommendations';
 
 // Import MDX files dynamically
 const articles = {
   'math-you-actually-need': () => import('@/content/career-pathways/math-you-actually-need.mdx'),
   'dexter-fan-to-forensic-scientist': () => import('@/content/career-pathways/dexter-fan-to-forensic-scientist.mdx'),
+  'digital-forensics-career': () => import('@/content/career-pathways/digital-forensics-career.mdx'),
+  'building-forensic-portfolio': () => import('@/content/career-pathways/building-forensic-portfolio.mdx'),
+  'ai-future-forensics': () => import('@/content/career-pathways/ai-future-forensics.mdx'),
 };
 
 export async function generateStaticParams() {
   return [
     { slug: 'math-you-actually-need' },
     { slug: 'dexter-fan-to-forensic-scientist' },
+    { slug: 'digital-forensics-career' },
+    { slug: 'building-forensic-portfolio' },
+    { slug: 'ai-future-forensics' },
   ];
 }
 
@@ -109,6 +116,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </div>
         </footer>
       )}
+
+      {/* Article Recommendations */}
+      <ArticleRecommendations
+        currentArticleSlug={params.slug}
+        allArticles={getAllArticles()}
+        maxResults={3}
+      />
     </article>
   );
 }
