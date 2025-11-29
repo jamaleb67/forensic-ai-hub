@@ -7,12 +7,16 @@ import ArticleRecommendations from '@/components/content/ArticleRecommendations'
 const articles = {
   'surviving-calculus-with-ai': () => import('@/content/study-resources/surviving-calculus-with-ai.mdx'),
   'mindgrasp-ai-review': () => import('@/content/study-resources/mindgrasp-ai-review.mdx'),
+  'ai-tools-comparison': () => import('@/content/study-resources/ai-tools-comparison.mdx'),
+  'gmu-forensic-science-guide': () => import('@/content/study-resources/gmu-forensic-science-guide.mdx'),
 };
 
 export async function generateStaticParams() {
   return [
     { slug: 'surviving-calculus-with-ai' },
     { slug: 'mindgrasp-ai-review' },
+    { slug: 'ai-tools-comparison' },
+    { slug: 'gmu-forensic-science-guide' },
   ];
 }
 

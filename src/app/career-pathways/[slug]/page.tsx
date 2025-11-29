@@ -7,12 +7,18 @@ import ArticleRecommendations from '@/components/content/ArticleRecommendations'
 const articles = {
   'math-you-actually-need': () => import('@/content/career-pathways/math-you-actually-need.mdx'),
   'dexter-fan-to-forensic-scientist': () => import('@/content/career-pathways/dexter-fan-to-forensic-scientist.mdx'),
+  'digital-forensics-career': () => import('@/content/career-pathways/digital-forensics-career.mdx'),
+  'building-forensic-portfolio': () => import('@/content/career-pathways/building-forensic-portfolio.mdx'),
+  'ai-future-forensics': () => import('@/content/career-pathways/ai-future-forensics.mdx'),
 };
 
 export async function generateStaticParams() {
   return [
     { slug: 'math-you-actually-need' },
     { slug: 'dexter-fan-to-forensic-scientist' },
+    { slug: 'digital-forensics-career' },
+    { slug: 'building-forensic-portfolio' },
+    { slug: 'ai-future-forensics' },
   ];
 }
 
